@@ -40,7 +40,7 @@ if user_input := st.chat_input("You: "):
         st.write(user_input)
 
     # Generate and display the AI's response
-    with st.chat_message("model"):
+    with st.chat_message("assistant"):
         with st.spinner("Gemini is thinking..."):
             ai_response = get_response(st.session_state.conversation)
             st.write(ai_response)
