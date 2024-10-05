@@ -9,6 +9,13 @@ genai.configure(api_key=api_key)  # Loading the API key into the generativeai mo
 # Initialize the Gemini model
 model = GenerativeModel('models/gemini-pro')
 
+# Function to translate roles between Gemini-Pro and Streamlit terminology
+def translate_role_for_streamlit(user_role):
+    if user_role == "model":
+        return "assistant"
+    else:
+        return user_role
+
 # Initialize conversation history in Streamlit's session state
 if "conversation" not in st.session_state:
     st.session_state.conversation = []
@@ -20,7 +27,7 @@ def get_response(conversation):
 
 # Display the conversation history using Streamlit's chat interface
 for message in st.session_state.conversation:
-    with st.chat_message(message["role"]):
+    with st.chat_message(translate_role_for_streamlit(message["role"])):
         st.write(" ".join(message["parts"]))
 
 # Create a chat input widget to get user input
