@@ -11,7 +11,7 @@ model = GenerativeModel('models/gemini-pro')
 
 # Initialize conversation history in Streamlit's session state
 if "conversation" not in st.session_state:
-    st.session_state.conversation = [{'role': 'user', 'parts': ['Hello!']}]
+    st.session_state.conversation = []
 
 # Function to get a response from the Gemini model
 def get_response(conversation):
